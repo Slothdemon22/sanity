@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface BlogDetailsProps {
-  params: { slug: string };
+  params: { slug: string }; // Adjust the type of params
 }
 type Block = {
     children: Array<{ text: string }>;
