@@ -5,7 +5,10 @@ import { notFound } from "next/navigation";
 interface BlogDetailsProps {
   params: { slug: string };
 }
-
+type Block = {
+    children: Array<{ text: string }>;
+    // Other potential properties based on your schema
+  };
 const query = `*[_type == "Blog" && slug.current == $slug][0]{
   title,
   description,
@@ -41,7 +44,7 @@ export default async function BlogDetails({ params }: BlogDetailsProps) {
       <p className="text-lg mb-4">{description}</p>
       <p className="text-sm text-gray-600 mb-4">{summary}</p>
       <div>
-        {content?.map((block: any, index: number) => (
+        {content?.map((block: Block, index: number) => (
           <div key={index}>
             {/* Render content blocks */}
             <p>{block.children?.[0]?.text || ""}</p>
